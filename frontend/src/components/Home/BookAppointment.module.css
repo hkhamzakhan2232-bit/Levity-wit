@@ -1,0 +1,392 @@
+.appointmentSection {
+  background-image: url('/images/appointment/background.jpg');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding: 0;
+  overflow: visible;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  overflow: visible;
+}
+
+/* Left Side - Feature Cards */
+.featuresContent {
+  position: relative;
+  padding: 4rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-content: center;
+}
+
+.featuresContent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.featureCard {
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pinkCard {
+  background-color: #E8B4B8;
+}
+
+.iconCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -3.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pinkCard .iconCircle {
+  background-color: #ffffff;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  color: #E8B4B8;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
+
+.pinkCard .icon {
+  color: white;
+}
+
+.cardTitle {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #333333;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0;
+}
+
+/* Right Side - Form */
+.formContent {
+  background-color: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.strokeBtn {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 12px 36px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  color: #333;
+  font-family: inherit;
+  display: inline-block;
+  width: fit-content;
+}
+
+.strokeBtn::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 2px solid rgba(0, 0, 0, 0.35);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: rotate(-3deg);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.strokeBtn:hover::before {
+  transform: rotate(2deg) scale(1.05);
+  border-color: rgba(0, 0, 0, 0.6);
+}
+
+.formWrapper {
+  background-color: #EBEBEB;
+  padding: 3rem 3rem 3rem 3rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  width: 554px;
+  min-height: 596px;
+  margin-top: -100px;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.formHeading {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  color: #333333;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
+.formSubheading {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0 0 2.5rem 0;
+  max-width: 400px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  flex: 1;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 0.95rem;
+  color: #333333;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #CCCCCC;
+  outline: none;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #999999;
+}
+
+.input:focus,
+.textarea:focus {
+  border-bottom-color: #333333;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitBtn {
+  width: fit-content;
+  padding: 1rem 3rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  background-color: transparent;
+  color: #333333;
+  border: 2px solid #333333;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.submitBtn:hover {
+  background-color: #333333;
+  color: white;
+}
+
+.successNote {
+  margin-top: 10px;
+  color: #2d7a46;
+  font-size: 0.9rem;
+}
+
+.errorNote {
+  margin-top: 10px;
+  color: #b00020;
+  font-size: 0.9rem;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .featuresContent {
+    padding: 3rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .formContent {
+    padding: 0;
+  }
+
+  .formWrapper {
+    width: 90%;
+    max-width: 554px;
+    min-height: 550px;
+    padding: 2.5rem 2.5rem;
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+}
+
+/* Small Tablet */
+@media (max-width: 768px) {
+  .featuresContent {
+    grid-template-columns: 1fr;
+    padding: 3rem 2rem;
+  }
+
+  .featureCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .formContent {
+    padding: 0;
+  }
+
+  .formWrapper {
+    width: 90%;
+    max-width: 500px;
+    min-height: 520px;
+    padding: 2rem 2rem;
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+
+  .formHeading {
+    font-size: 3rem;
+  }
+
+  .submitBtn {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .featuresContent {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .featureCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .cardTitle {
+    font-size: 1.6rem;
+  }
+
+  .cardDescription {
+    font-size: 0.85rem;
+  }
+
+  .formContent {
+    padding: 0;
+  }
+
+  .formWrapper {
+    width: 90%;
+    max-width: 450px;
+    min-height: 500px;
+    padding: 2rem 1.5rem;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  .formHeading {
+    font-size: 2.5rem;
+  }
+
+  .formSubheading {
+    font-size: 0.9rem;
+  }
+
+  .input,
+  .textarea {
+    padding: 0.9rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+  .featuresContent {
+    padding: 2rem 1rem;
+  }
+
+  .featureCard {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .iconCircle {
+    width: 50px;
+    height: 50px;
+    margin-top: -3rem;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cardTitle {
+    font-size: 1.5rem;
+  }
+
+  .formContent {
+    padding: 0;
+  }
+
+  .formWrapper {
+    width: 90%;
+    max-width: 380px;
+    min-height: 480px;
+    padding: 1.75rem 1.25rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .formHeading {
+    font-size: 2.2rem;
+  }
+}

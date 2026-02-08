@@ -1,0 +1,377 @@
+/* General Layout */
+.about-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Hero Section */
+.about-hero {
+  position: relative;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .about-hero {
+    height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-hero {
+    height: 350px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-hero {
+    height: 400px;
+  }
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.3);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  padding: 0 1rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-family: 'Allura', 'Brush Script MT', cursive;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 4rem;
+    margin-bottom: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 5rem;
+  }
+}
+
+.hero-breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 640px) {
+  .hero-breadcrumbs {
+    font-size: 0.875rem;
+  }
+}
+
+/* Julia Section */
+.about-julia-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .about-julia-section {
+    padding: 4rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-julia-section {
+    padding: 6rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-julia-section {
+    padding: 8rem 3rem;
+  }
+}
+
+.julia-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .julia-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .julia-grid {
+    gap: 5rem;
+  }
+}
+
+/* Left Column - Text */
+.julia-text-col {
+  order: 2;
+}
+
+@media (min-width: 768px) {
+  .julia-text-col {
+    order: 1;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .julia-text-col {
+    padding-right: 3rem;
+  }
+}
+
+.julia-name {
+  font-size: 2.25rem;
+  font-family: 'Allura', 'Brush Script MT', cursive;
+  color: #E8B4B8;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .julia-name {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .julia-name {
+    font-size: 3.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .julia-name {
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.julia-bio {
+  color: #4a4a4a;
+  line-height: 1.8;
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .julia-bio {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    text-align: justify;
+  }
+}
+
+@media (min-width: 768px) {
+  .julia-bio {
+    font-size: 1rem;
+    line-height: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .julia-bio {
+    font-size: 1.05rem;
+  }
+}
+
+.font-bold { 
+  font-weight: 600; 
+}
+
+/* Right Column - Images */
+.julia-image-col {
+  position: relative;
+  order: 1;
+  height: 400px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .julia-image-col {
+    height: 500px;
+  }
+}
+
+@media (min-width: 768px) {
+  .julia-image-col {
+    order: 2;
+    height: 550px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .julia-image-col {
+    height: 650px;
+  }
+}
+
+.teal-box {
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .teal-box {
+    top: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .teal-box {
+    top: 4rem;
+  }
+}
+
+.main-image-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  max-width: 100%; /* Never gets wider than its container */
+  height: auto;    /* Maintains the original aspect ratio */
+  display: block;  /* Removes extra space at the bottom */
+}
+
+@media (min-width: 640px) {
+  .main-image-wrapper {
+    width: 100%;
+    height: 100%;
+    right: 1.5rem;
+    max-width: 100%; /* Never gets wider than its container */
+  height: auto;    /* Maintains the original aspect ratio */
+  display: block;  /* Removes extra space at the bottom */
+  }
+}
+
+@media (min-width: 768px) {
+  .main-image-wrapper {
+    width: 100%;
+    height: 100%;
+    right: 2rem;
+    max-width: 100%; /* Never gets wider than its container */
+  height: auto;    /* Maintains the original aspect ratio */
+  display: block;  /* Removes extra space at the bottom */
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-image-wrapper {
+    width: 100%;
+    height: 100%;
+    right: 2.5rem;
+    max-width: 100%; /* Never gets wider than its container */
+  height: auto;    /* Maintains the original aspect ratio */
+  display: block;  /* Removes extra space at the bottom */
+  }
+}
+
+.main-image {
+  width: 120%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+@media (min-width: 1024px) {
+  .main-image {
+    max-width: 100%; /* Never gets wider than its container */
+  height: auto;    /* Maintains the original aspect ratio */
+  display: block;  /* Removes extra space at the bottom */
+  }
+}
+
+.pendant-image-wrapper {
+  position: absolute;
+  left: 1rem;
+  top: 35%;
+  width: 9rem;
+  height: 9rem;
+  z-index: 4;
+  background-color: white;
+  padding: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .pendant-image-wrapper {
+    width: 10rem;
+    height: 10rem;
+    left: 1.5rem;
+    top: 38%;
+    padding: 0.6rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .pendant-image-wrapper {
+    width: 12rem;
+    height: 12rem;
+    left: 2rem;
+    top: 40%;
+    padding: 0.75rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pendant-image-wrapper {
+    width: 14rem;
+    height: 14rem;
+    left: 2.5rem;
+    top: 42%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.pendant-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,288 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  font-family: 'Georgia', serif;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 80px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logo h1 {
+  font-size: 36px;
+  font-weight: 300;
+  color: #333;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.ampersand {
+  color: #d4a5a5;
+  font-style: italic;
+}
+
+.tagline {
+  font-size: 14px;
+  color: #d4a5a5;
+  font-style: italic;
+  margin: 5px 0 0 0;
+  letter-spacing: 1px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 20px;
+}
+
+.socialIcons a {
+  color: #333;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #d4a5a5;
+}
+
+/* Intro Text Section */
+.introText {
+  padding: 60px 80px;
+  background-color: white;
+  text-align: right;
+}
+
+.introText p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #666;
+  max-width: 500px;
+  margin-left: auto;
+  letter-spacing: 0.5px;
+}
+
+/* Map Section */
+.mapSection {
+  padding: 0;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.mapPin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.mapLabel {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.mapLabel p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Form Section */
+.formSection {
+  padding: 80px 80px 100px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formTitle {
+  font-size: 48px;
+  font-weight: 300;
+  color: #333;
+  font-style: italic;
+  margin-bottom: 50px;
+  font-family: 'Brush Script MT', cursive;
+}
+
+.contactForm {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: flex;
+  gap: 20px;
+}
+
+.input,
+.inputFull {
+  padding: 15px 20px;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #666;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.input {
+  flex: 1;
+}
+
+.inputFull {
+  width: 100%;
+}
+
+.input:focus,
+.inputFull:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #d4a5a5;
+}
+
+.input::placeholder,
+.inputFull::placeholder,
+.textarea::placeholder {
+  color: #999;
+}
+
+.textarea {
+  padding: 15px 20px;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #666;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 150px;
+  transition: border-color 0.3s ease;
+}
+
+.submitBtn {
+  padding: 15px 50px;
+  background-color: #d4a5a5;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  letter-spacing: 1px;
+}
+
+.submitBtn:hover {
+  background-color: #c49090;
+  transform: translateY(-2px);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+.successNote {
+  margin-top: 10px;
+  color: #2d7a46;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.errorNote {
+  margin-top: 10px;
+  color: #b00020;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    padding: 30px 40px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .logo h1 {
+    font-size: 28px;
+  }
+
+  .introText {
+    padding: 40px;
+    text-align: left;
+  }
+
+  .introText p {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .formSection {
+    padding: 60px 40px 80px;
+  }
+
+  .formTitle {
+    font-size: 36px;
+  }
+
+  .formRow {
+    flex-direction: column;
+  }
+
+  .mapContainer {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 20px;
+  }
+
+  .logo h1 {
+    font-size: 24px;
+  }
+
+  .introText {
+    padding: 30px 20px;
+  }
+
+  .formSection {
+    padding: 40px 20px 60px;
+  }
+
+  .formTitle {
+    font-size: 28px;
+  }
+}

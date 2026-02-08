@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Hero Banner */
+.hero-banner {
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.breadcrumb {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+}
+
+/* Auth Container */
+.auth-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* Tab Navigation */
+.auth-tabs {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.auth-tab {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.auth-tab.active {
+    font-family: 'Playfair Display', serif;
+}
+
+.auth-tab.inactive {
+    font-family: 'Playfair Display', serif;
+    color: #ccc;
+}
+
+/* Description Text */
+.auth-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Form Styles */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 0;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #c9a89a;
+}
+
+.form-group input::placeholder {
+    color: #ccc;
+}
+
+/* Checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    font-size: 0.9rem;
+    color: #666;
+    cursor: pointer;
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #d4a89a;
+    color: white;
+    border: none;
+    padding: 18px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    background-color: #c9a089;
+}
+
+.submit-btn:disabled {
+    background-color: #e0d0c8;
+    cursor: not-allowed;
+}
+
+/* Links */
+.auth-link {
+    color: #c9a89a;
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+/* Error Message */
+.error-message {
+    background-color: #fee;
+    color: #c00;
+    padding: 12px 15px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Success Message */
+.success-message {
+    background-color: #efe;
+    color: #060;
+    padding: 12px 15px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Dashboard Styles */
+.dashboard-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px;
+    text-align: center;
+}
+
+.dashboard-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.dashboard-container p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.logout-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .auth-container {
+        margin: 40px auto;
+    }
+    
+    .auth-tabs {
+        gap: 20px;
+    }
+    
+    .auth-tab {
+        font-size: 1.2rem;
+    }
+}

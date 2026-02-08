@@ -1,0 +1,144 @@
+.navbar {
+  background-color: var(--primary-pink);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandName {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--dark-text);
+  letter-spacing: 1px;
+}
+
+.tagline {
+  font-family: 'Great Vibes', cursive;
+  font-size: 0.9rem;
+  color: var(--dark-text);
+  opacity: 0.8;
+  margin-top: -4px;
+}
+
+.navLinks {
+  display: flex;
+  margin-left: 750px;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.navLinks a {
+  color: var(--dark-text);
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+  position: relative;
+}
+
+/* TODO: Add underline animation on hover */
+.navLinks a:hover {
+  opacity: 0.7;
+}
+
+.navIcons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  color: var(--dark-text);
+  padding: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.iconBtn:hover {
+  opacity: 0.7;
+}
+
+.divider {
+  color: var(--dark-text);
+  opacity: 0.5;
+}
+
+.menuBtn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--dark-text);
+  padding: 0.5rem;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+/* Tablet and Mobile */
+@media (max-width: 900px) {
+  .navLinks {
+    display: none;
+  }
+
+  .menuBtn {
+    display: block;
+  }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: rgba(212, 165, 165, 0.95);
+    gap: 1rem;
+  }
+
+  .mobileMenu a {
+    padding: 0.75rem;
+    color: var(--dark-text);
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(44, 44, 44, 0.1);
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .brandName {
+    font-size: 1.25rem;
+  }
+
+  .tagline {
+    font-size: 0.8rem;
+  }
+
+  .navIcons {
+    gap: 1rem;
+  }
+
+  .strokeBtn {
+    margin: 0 auto;
+  }
+}

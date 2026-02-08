@@ -1,0 +1,166 @@
+.successPage {
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.successCard {
+  background: white;
+  padding: 60px 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.checkmark {
+  margin: 0 auto 30px;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 15px 0;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  margin: 0 0 30px 0;
+}
+
+.orderInfo {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 8px;
+  margin: 30px 0;
+}
+
+.orderNumber {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.orderNumber strong {
+  color: #d4a5a5;
+  font-weight: 600;
+}
+
+.confirmationText {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.nextSteps {
+  text-align: left;
+  margin: 40px 0;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.nextSteps h3 {
+  font-size: 18px;
+  color: #000;
+  margin: 0 0 15px 0;
+  font-weight: 500;
+}
+
+.nextSteps ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.nextSteps li {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.primaryButton {
+  padding: 14px 35px;
+  background-color: #d4a5a5;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  display: inline-block;
+}
+
+.primaryButton:hover {
+  background-color: #c89595;
+}
+
+.secondaryButton {
+  padding: 14px 35px;
+  background-color: white;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.secondaryButton:hover {
+  border-color: #999;
+  background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+  .successPage {
+    padding: 40px 15px;
+  }
+
+  .successCard {
+    padding: 40px 25px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    text-align: center;
+  }
+}

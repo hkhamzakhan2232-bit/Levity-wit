@@ -1,0 +1,98 @@
+/* ContactSection.css */
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.contact-left,
+.contact-right {
+  flex: 1;
+}
+
+.contact-left {
+  background-color: #d6a5a0;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.contact-left h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-left form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-left input,
+.contact-left textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  padding: 0.5rem 0;
+  color: white;
+  outline: none;
+  font-size: 1rem;
+}
+
+.contact-left input::placeholder,
+.contact-left textarea::placeholder {
+  color: white;
+}
+
+.contact-left textarea {
+  resize: none;
+}
+
+.contact-left button {
+  margin-top: 1rem;
+  width: 9rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  border-radius: 9999px;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.successNote {
+  margin-top: 10px;
+  color: #003300;
+  font-size: 0.9rem;
+}
+
+.errorNote {
+  margin-top: 10px;
+  color: #ffdddd;
+  font-size: 0.9rem;
+}
+
+.contact-right iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .contact-section {
+    flex-direction: row;
+  }
+
+  .contact-left {
+    padding: 6rem;
+  }
+
+  .contact-left h2 {
+    font-size: 3rem;
+  }
+}

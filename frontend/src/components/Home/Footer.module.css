@@ -1,0 +1,152 @@
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Contact Section */
+.section {
+  text-align: left;
+}
+
+.heading {
+  color: #1f2937;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.text {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin: 0.75rem 0;
+}
+
+/* Center Logo Section */
+.centerSection {
+  text-align: center;
+}
+
+.logoContainer {
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  font-size: 2.25rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.logoText {
+  color: #1f2937;
+}
+
+.logoAmpersand {
+  color: #fda4af;
+}
+
+.tagline {
+  color: #fda4af;
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* Social Media */
+.socialContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.socialLink {
+  color: #1f2937;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.socialLink:hover {
+  color: #fda4af;
+}
+
+.divider {
+  color: #d1d5db;
+}
+
+/* Working Hours Section */
+.sectionRight {
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .section,
+  .sectionRight {
+    text-align: center;
+  }
+}
+
+/* Bottom Section */
+.bottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.bottomContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .bottomContent {
+    flex-direction: row;
+  }
+}
+
+.copyright {
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.link {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #6b7280;
+}

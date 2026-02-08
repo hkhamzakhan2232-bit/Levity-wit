@@ -1,0 +1,267 @@
+.meetBethSection {
+  width: 100%;
+  padding: 6rem 2rem;
+  background-color: #FFFFFF;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+/* Left Side - Images */
+.imageContent {
+  position: relative;
+  width: 100%;
+  height: 608px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Main Beth Portrait Image */
+.bethImage {
+  position: relative;
+  width: 540px;
+  height: 608px;
+  background-color: #000;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay Text on Image */
+.imageOverlay {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 2;
+}
+
+.overlayText {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 400;
+  color: white;
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Necklace Image - overlapping top right */
+.necklaceImage {
+  position: absolute;
+  top: 120px;
+  right: -80px;
+  width: 250px;
+  height: 280px;
+  padding: 10px;
+  z-index: 2;
+}
+
+.necklace {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right Side - Text Content */
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 2rem;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #000000;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.8;
+  color: #999999;
+  margin: 0;
+  max-width: 500px;
+}
+
+/* Large Desktop */
+@media (max-width: 1400px) {
+  .container {
+    gap: 4rem;
+  }
+
+  .imageContent {
+    height: 550px;
+  }
+
+  .bethImage {
+    width: 480px;
+    height: 550px;
+  }
+
+  .necklaceImage {
+    right: -60px;
+    top: 100px;
+  }
+}
+
+/* Tablet - Stack Layout */
+@media (max-width: 1024px) {
+  .meetBethSection {
+    padding: 5rem 0rem;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .imageContent {
+    height: 500px;
+    margin: 0 auto;
+  }
+
+  .bethImage {
+    width: 100%;
+    height: 100%;
+  }
+
+  .necklaceImage {
+    right: -50px;
+    top: 90px;
+    width: 200px;
+    height: 145px;
+  }
+
+  .textContent {
+    text-align: center;
+    align-items: center;
+    padding-left: 0;
+  }
+
+  .description {
+    max-width: 600px;
+  }
+}
+
+/* Small Tablet */
+@media (max-width: 768px) {
+  .meetBethSection {
+    padding: 4rem 0rem;
+  }
+
+  .container {
+    gap: 17rem;
+  }
+
+  .imageContent {
+    height: 450px;
+  }
+
+  .bethImage {
+    width: 100%;
+    height: 150%;
+  }
+
+  .necklaceImage {
+    right: -40px;
+    top: 80px;
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .meetBethSection {
+    padding: 3rem 0rem;
+  }
+
+  .container {
+    gap: 8.8rem;
+  }
+
+  .imageContent {
+    height: 400px;
+  }
+
+  .bethImage {
+    width: 100%;
+    height: 130%;
+  }
+
+  .necklaceImage {
+    left: -30px;
+    top: 50px;
+    margin-left: 30px;
+    width: 170px;
+    height: 190px;
+  }
+
+  .textContent {
+    gap: 1.5rem;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+  .meetBethSection {
+    padding: 2.5rem 0rem;
+  }
+
+  .imageContent {
+    height: 360px;
+  }
+
+  .bethImage {
+    width: 100%;
+    height: 130%;
+  }
+
+  .necklaceImage {
+    right: -25px;
+    top: 60px;
+    width: 130px;
+    height: 130px;
+    padding: 8px;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 380px) {
+  .imageContent {
+    height: 320px;
+  }
+
+  .bethImage {
+    width: 100%;
+    height: 130%;
+  }
+
+  .imageOverlay {
+    bottom: 15px;
+    left: 15px;
+  }
+
+  .necklaceImage {
+    right: -20px;
+    top: 50px;
+    width: 120px;
+    height: 120px;
+  }
+}
