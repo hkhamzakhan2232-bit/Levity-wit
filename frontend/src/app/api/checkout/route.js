@@ -1,17 +1,20 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request) {
-    try {
-        const orderData = await request.json();
+  try {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: 'Email service not configured' }, { status: 500 });
+    }
+    const resend = new Resend(apiKey);
+    const orderData = await request.json();
 
-        // Generate unique order ID
-        const orderId = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    // Generate unique order ID
+    const orderId = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-        // Customer confirmation email
-        const customerEmailHtml = `
+    // Customer confirmation email
+    const customerEmailHtml = `
       <!DOCTYPE html>
       <html>
       <head>
@@ -75,9 +78,9 @@ export async function POST(request) {
             <div class="order-details">
               <h3>Payment Method</h3>
               <p style="margin: 5px 0;">${orderData.paymentMethod === 'bank-transfer' ? 'Direct Bank Transfer' :
-                orderData.paymentMethod === 'check' ? 'Check Payments' :
-                    orderData.paymentMethod === 'cod' ? 'Cash on Delivery' : 'PayPal'
-            }</p>
+        orderData.paymentMethod === 'check' ? 'Check Payments' :
+          orderData.paymentMethod === 'cod' ? 'Cash on Delivery' : 'PayPal'
+      }</p>
             </div>
 
             ${orderData.orderNotes ? `
@@ -99,8 +102,8 @@ export async function POST(request) {
       </html>
     `;
 
-        // Admin notification email
-        const adminEmailHtml = `
+    // Admin notification email
+    const adminEmailHtml = `
       <!DOCTYPE html>
       <html>
       <head>
@@ -171,9 +174,9 @@ export async function POST(request) {
             <div class="order-details">
               <h3>Payment Method</h3>
               <p style="margin: 5px 0;">${orderData.paymentMethod === 'bank-transfer' ? 'Direct Bank Transfer' :
-                orderData.paymentMethod === 'check' ? 'Check Payments' :
-                    orderData.paymentMethod === 'cod' ? 'Cash on Delivery' : 'PayPal'
-            }</p>
+        orderData.paymentMethod === 'check' ? 'Check Payments' :
+          orderData.paymentMethod === 'cod' ? 'Cash on Delivery' : 'PayPal'
+      }</p>
             </div>
 
             ${orderData.orderNotes ? `
@@ -188,36 +191,36 @@ export async function POST(request) {
       </html>
     `;
 
-        // Send customer email
-        await resend.emails.send({
-            from: 'Levity & Wit <onboarding@resend.dev>', // Use resend's test email or your verified domain
-            to: orderData.billingDetails.email,
-            subject: `Order Confirmation - ${orderId}`,
-            html: customerEmailHtml,
-        });
+    // Send customer email
+    await resend.emails.send({
+      from: 'Levity & Wit <onboarding@resend.dev>', // Use resend's test email or your verified domain
+      to: orderData.billingDetails.email,
+      subject: `Order Confirmation - ${orderId}`,
+      html: customerEmailHtml,
+    });
 
-        // Send admin notification
-        await resend.emails.send({
-            from: 'Levity & Wit <onboarding@resend.dev>',
-            to: process.env.ADMIN_EMAIL || 'your-email@gmail.com', // Your personal email
-            subject: `New Order - ${orderId}`,
-            html: adminEmailHtml,
-        });
+    // Send admin notification
+    await resend.emails.send({
+      from: 'Levity & Wit <onboarding@resend.dev>',
+      to: process.env.ADMIN_EMAIL || 'your-email@gmail.com', // Your personal email
+      subject: `New Order - ${orderId}`,
+      html: adminEmailHtml,
+    });
 
-        // Optional: Save to database here
-        // await saveOrderToDatabase(orderId, orderData);
+    // Optional: Save to database here
+    // await saveOrderToDatabase(orderId, orderData);
 
-        return NextResponse.json({
-            success: true,
-            orderId: orderId,
-            message: 'Order placed successfully',
-        });
+    return NextResponse.json({
+      success: true,
+      orderId: orderId,
+      message: 'Order placed successfully',
+    });
 
-    } catch (error) {
-        console.error('Checkout error:', error);
-        return NextResponse.json(
-            { error: 'Failed to process order', details: error.message },
-            { status: 500 }
-        );
-    }
+  } catch (error) {
+    console.error('Checkout error:', error);
+    return NextResponse.json(
+      { error: 'Failed to process order', details: error.message },
+      { status: 500 }
+    );
+  }
 }

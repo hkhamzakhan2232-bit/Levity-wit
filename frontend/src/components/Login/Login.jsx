@@ -21,11 +21,10 @@ const Login = () => {
   }
 
   try {
-    const base = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000'
     const url =
       mode === 'login'
-        ? `${base}/api/login`
-        : `${base}/api/register`;
+        ? `/api/auth/login`
+        : `/api/auth/register`;
 
     // For login, send `username` (could be email or username)
     // For register, send username, email, password

@@ -20,8 +20,7 @@ const MyAccount = () => {
       const token = localStorage.getItem('token');
       if (!token) return router.push('/login');
 
-      const base = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000'
-      const response = await axios.get(`${base}/api/profile`, {
+      const response = await axios.get(`/api/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
