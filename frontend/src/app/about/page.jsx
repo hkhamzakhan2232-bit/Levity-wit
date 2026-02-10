@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import LatestNewsSection from '@/components/Home/LatestNewsSection';
 import TestimonialsSection from '@/components/Home/TestimonialsSection';
 import Link from 'next/link';
@@ -235,7 +237,6 @@ export default function AboutPage() {
 
           {/* Right Column - Image */}
           <div className="julia-image-col">
-            
             <div className="main-image-wrapper">
               <img src="/images/about/image.png" alt="Julia Palacci" className="main-image" />
             </div>

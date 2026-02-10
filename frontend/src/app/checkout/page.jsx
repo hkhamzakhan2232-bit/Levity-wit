@@ -3,7 +3,7 @@
 import { useCart } from '@/app/context/CartContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Checkout.module.css';
 
 export default function CheckoutPage() {
@@ -28,8 +28,26 @@ export default function CheckoutPage() {
   });
 
   const subtotal = getCartTotal();
-  const shippingCost = 10.00;
+  const [shippingMethod, setShippingMethod] = useState('flat');
+  const [shippingRates, setShippingRates] = useState({ flatRate: 10, localPickup: 0 });
+  const shippingCost = shippingMethod === 'flat' ? shippingRates.flatRate : shippingRates.localPickup;
   const total = subtotal + shippingCost;
+
+  useEffect(() => {
+    async function loadRates() {
+      try {
+        const res = await fetch('/api/shipping');
+        const data = await res.json();
+        setShippingRates({
+          flatRate: Number(data.flatRate ?? 10),
+          localPickup: Number(data.localPickup ?? 0),
+        });
+      } catch (e) {
+        setShippingRates({ flatRate: 10, localPickup: 0 });
+      }
+    }
+    loadRates();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -60,6 +78,7 @@ export default function CheckoutPage() {
         items: cartItems,
         orderNotes: formData.orderNotes,
         paymentMethod: formData.paymentMethod,
+        shippingMethod,
         subtotal: subtotal,
         shipping: shippingCost,
         total: total,
@@ -482,7 +501,9 @@ export default function CheckoutPage() {
 
               <div className={styles.orderRow}>
                 <span>Shipping</span>
-                <span>Flat rate: ${shippingCost.toFixed(2)}</span>
+                <span>
+                  {shippingMethod === 'flat' ? 'Flat rate' : 'Local pickup'}: ${shippingCost.toFixed(2)}
+                </span>
               </div>
 
               <div className={styles.orderTotal}>
@@ -493,6 +514,31 @@ export default function CheckoutPage() {
 
             {/* Payment Methods */}
             <div className={styles.paymentMethods}>
+              <div className={styles.paymentOption}>
+                <strong>Shipping Method</strong>
+                <div style={{ marginTop: '0.5rem' }}>
+                  <label style={{ display: 'block', marginBottom: '0.25rem' }}>
+                    <input
+                      type="radio"
+                      name="shippingMethod"
+                      checked={shippingMethod === 'flat'}
+                      onChange={() => setShippingMethod('flat')}
+                      style={{ marginRight: '0.5rem' }}
+                    />
+                    Flat rate (${shippingRates.flatRate.toFixed(2)})
+                  </label>
+                  <label style={{ display: 'block' }}>
+                    <input
+                      type="radio"
+                      name="shippingMethod"
+                      checked={shippingMethod === 'pickup'}
+                      onChange={() => setShippingMethod('pickup')}
+                      style={{ marginRight: '0.5rem' }}
+                    />
+                    Local pickup (${shippingRates.localPickup.toFixed(2)})
+                  </label>
+                </div>
+              </div>
               <div className={styles.paymentOption}>
                 <input
                   type="radio"
@@ -555,7 +601,7 @@ export default function CheckoutPage() {
                     <span>💳</span>
                     <span>💳</span>
                   </div>
-                  <p>Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
+                  <p>Pay via PayPal; you can pay with your credit card if you do not have a PayPal account.</p>
                 </label>
               </div>
             </div>

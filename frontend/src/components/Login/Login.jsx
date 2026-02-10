@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [mode, setMode] = useState('login');
+  const [remember, setRemember] = useState(false);
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -30,9 +31,9 @@ const Login = () => {
     // For login, send `username` (could be email or username)
     // For register, send username, email, password
     const payload =
-  mode === 'login'
-    ? { username: username, email: username, password } // send both
-    : { username, email, password };
+      mode === 'login'
+        ? { username: username, email: username, password, rememberMe: remember }
+        : { username, email, password };
 
 
     const response = await axios.post(url, payload);
@@ -344,7 +345,12 @@ const Login = () => {
 
         {mode === 'login' && (
           <div className="checkbox-group">
-            <input type="checkbox" id="remember" />
+            <input
+              type="checkbox"
+              id="remember"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+            />
             <label htmlFor="remember">Keep me signed in</label>
           </div>
         )}

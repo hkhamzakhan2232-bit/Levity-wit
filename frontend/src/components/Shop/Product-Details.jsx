@@ -1,27 +1,19 @@
 'use client';
 
 import { useCart } from '@/app/context/CartContext';
-import { allProducts, createSlug, getProductBySlug } from '@/lib/products-data';
+import { allProducts, createSlug } from '@/lib/products-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function ProductDetailsPage({ slug }) {
+export default function ProductDetailsPage({ slug, product: initialProduct }) {
   const router = useRouter();
   const { addToCart } = useCart();
   
-  // Find product by slug
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (slug) {
-      const foundProduct = getProductBySlug(slug);
-      setProduct(foundProduct);
-      setLoading(false);
-    }
-  }, [slug]);
+  // Use the product passed from the server
+  const [product, setProduct] = useState(initialProduct);
+  const [loading, setLoading] = useState(false);
 
   // State
   const [selectedSize, setSelectedSize] = useState('M');
@@ -77,85 +69,6 @@ export default function ProductDetailsPage({ slug }) {
   ] : [];
 
   const sizes = ['S', 'M', 'L', 'XL'];
-
-  // Show loading
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p>Loading product...</p>
-        <style jsx>{`
-          .loading-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-            gap: 20px;
-          }
-          .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #333;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-          }
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-          .loading-container p {
-            color: #666;
-            font-size: 16px;
-          }
-        `}</style>
-      </div>
-    );
-  }
-
-  // Show not found
-  if (!product) {
-    return (
-      <div className="not-found">
-        <h1>Product Not Found</h1>
-        <p>The product you're looking for doesn't exist.</p>
-        <button onClick={() => router.push('/shop')} className="back-button">
-          Back to Shop
-        </button>
-        <style jsx>{`
-          .not-found {
-            text-align: center;
-            padding: 100px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-          }
-          .not-found h1 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #000;
-          }
-          .not-found p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
-          }
-          .back-button {
-            padding: 12px 30px;
-            background-color: #000;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.2s;
-          }
-          .back-button:hover {
-            background-color: #333;
-          }
-        `}</style>
-      </div>
-    );
-  }
 
   const handleQuantityChange = (delta) => {
     setQuantity(Math.max(1, quantity + delta));

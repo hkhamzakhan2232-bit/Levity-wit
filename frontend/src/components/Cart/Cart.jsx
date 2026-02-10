@@ -4,22 +4,34 @@ import { useCart } from '@/app/context/CartContext';
 import '@/styles/auth.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Cart = () => {
   const router = useRouter();
   const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart();
   const [couponCode, setCouponCode] = useState('');
-  const [shippingInfo, setShippingInfo] = useState({
-    country: '',
-    state: '',
-    city: '',
-    postcode: ''
-  });
+  const [shippingMethod, setShippingMethod] = useState('flat');
+  const [shippingRates, setShippingRates] = useState({ flatRate: 10, localPickup: 0 });
 
   const subtotal = getCartTotal();
-  const shippingCost = 10.00;
+  const shippingCost = shippingMethod === 'flat' ? shippingRates.flatRate : shippingRates.localPickup;
   const total = subtotal + shippingCost;
+
+  useEffect(() => {
+    async function loadRates() {
+      try {
+        const res = await fetch('/api/shipping');
+        const data = await res.json();
+        setShippingRates({
+          flatRate: Number(data.flatRate ?? 10),
+          localPickup: Number(data.localPickup ?? 0),
+        });
+      } catch (e) {
+        setShippingRates({ flatRate: 10, localPickup: 0 });
+      }
+    }
+    loadRates();
+  }, []);
 
   const handleQuantityChange = (itemId, size, delta) => {
     const item = cartItems.find(i => i.id === itemId && i.size === size);
@@ -38,12 +50,8 @@ const Cart = () => {
     alert('Cart updated!');
   };
 
-  const handleCalculateShipping = () => {
-    if (shippingInfo.country && shippingInfo.state && shippingInfo.city && shippingInfo.postcode) {
-      alert('Shipping calculated!');
-    } else {
-      alert('Please fill in all shipping information');
-    }
+  const handleShippingChange = (method) => {
+    setShippingMethod(method);
   };
 
   return (
@@ -637,44 +645,6 @@ const Cart = () => {
 
               {/* Cart Summary */}
               <div className="cart-summary">
-                {/* Shipping Calculator */}
-                <div className="shipping-calculator">
-                  <h3 className="calculator-title">Calculate shipping</h3>
-                  <div className="calculator-form">
-                    <input
-                      type="text"
-                      className="form-input"
-                      placeholder="Vietnam"
-                      value={shippingInfo.country}
-                      onChange={(e) => setShippingInfo({...shippingInfo, country: e.target.value})}
-                    />
-                    <input
-                      type="text"
-                      className="form-input"
-                      placeholder="State / Country"
-                      value={shippingInfo.state}
-                      onChange={(e) => setShippingInfo({...shippingInfo, state: e.target.value})}
-                    />
-                    <input
-                      type="text"
-                      className="form-input"
-                      placeholder="City"
-                      value={shippingInfo.city}
-                      onChange={(e) => setShippingInfo({...shippingInfo, city: e.target.value})}
-                    />
-                    <input
-                      type="text"
-                      className="form-input"
-                      placeholder="Postcode / ZIP"
-                      value={shippingInfo.postcode}
-                      onChange={(e) => setShippingInfo({...shippingInfo, postcode: e.target.value})}
-                    />
-                    <button className="calculate-btn" onClick={handleCalculateShipping}>
-                      Update
-                    </button>
-                  </div>
-                </div>
-
                 {/* Cart Total */}
                 <div className="cart-total-box">
                   <h3 className="total-title">Cart Total</h3>
@@ -689,16 +659,28 @@ const Cart = () => {
                     <div>
                       <div className="shipping-options">
                         <div className="shipping-option">
-                          <input type="radio" id="flat-rate" name="shipping" defaultChecked />
-                          <label htmlFor="flat-rate">Flat rate: $ {shippingCost.toFixed(2)}</label>
+                          <input 
+                            type="radio" 
+                            id="flat-rate" 
+                            name="shipping" 
+                            checked={shippingMethod === 'flat'}
+                            onChange={() => handleShippingChange('flat')}
+                          />
+                          <label htmlFor="flat-rate">Flat rate: $ {shippingRates.flatRate.toFixed(2)}</label>
                         </div>
                         <div className="shipping-option">
-                          <input type="radio" id="local-pickup" name="shipping" />
-                          <label htmlFor="local-pickup">Local pickup</label>
+                          <input 
+                            type="radio" 
+                            id="local-pickup" 
+                            name="shipping"
+                            checked={shippingMethod === 'pickup'}
+                            onChange={() => handleShippingChange('pickup')}
+                          />
+                          <label htmlFor="local-pickup">Local pickup: $ {shippingRates.localPickup.toFixed(2)}</label>
                         </div>
                       </div>
                       <p className="shipping-note">
-                        Shipping options will be updated during checkout.
+                        Local pickup applies no shipping fee. Changes update your total instantly.
                       </p>
                     </div>
                   </div>

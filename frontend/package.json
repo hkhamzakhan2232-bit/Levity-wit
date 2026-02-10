@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:webpack": "next build --webpack",
     "start": "next start",
+    "start:webpack": "next start --webpack",
     "lint": "eslint",
     "posts:generate": "node scripts/create-post.js"
   },

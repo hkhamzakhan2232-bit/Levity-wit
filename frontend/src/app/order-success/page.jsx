@@ -1,11 +1,8 @@
-'use client';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import styles from './OrderSuccess.module.css';
 
-export default function OrderSuccessPage() {
-  const searchParams = useSearchParams();
-  const orderId = searchParams.get('orderId');
+export default function OrderSuccessPage({ searchParams }) {
+  const orderId = searchParams?.orderId;
 
   return (
     

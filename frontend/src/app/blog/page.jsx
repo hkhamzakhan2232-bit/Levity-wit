@@ -1,6 +1,7 @@
 // app/blog/page.jsx
 import BlogLayout from '@/components/Blog/BlogLayout'
 import BlogList from '@/components/Blog/BlogList'
+import BlogSidebar from '@/components/Blog/BlogSidebar'
 import { getAllPosts, getAllTags, getCategories, getRecentPosts } from '@/lib/posts'
 
 export default function BlogPage({ searchParams }) {
@@ -31,7 +32,16 @@ export default function BlogPage({ searchParams }) {
   const tags = getAllTags()
 
   return (
-    <BlogLayout>
+    <BlogLayout
+      sidebar={
+        <BlogSidebar
+          categories={categories}
+          recent={recent}
+          tags={tags}
+          currentCategory={searchParams?.category}
+        />
+      }
+    >
       <BlogList posts={posts} />
     </BlogLayout>
   )

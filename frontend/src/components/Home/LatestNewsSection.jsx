@@ -1,62 +1,62 @@
 'use client';
 
 import Image from 'next/image';
-
-const newsItems = [
-  {
-    id: 1,
-    date: '20 JULY, 2023',
-    title: 'Volutpat Ac Tincidunt',
-    description: 'Lacus luctus accumsan tortor posuere ac. Cursus risus at ultrices mi tempus imperdiet',
-    image: '/images/news/news1.jpg',
-  },
-  {
-    id: 2,
-    date: '20 JULY, 2023',
-    title: 'Lacus Luctus Accumsan',
-    description: 'Leo duis ut diam quam nulla porttitor massa id. Urna molestie at elementum eu facilisis',
-    image: '/images/news/news2.jpg',
-  },
-  {
-    id: 3,
-    date: '20 JULY, 2023',
-    title: 'Suscipit Tellus Mauris',
-    description: 'Nisl nunc mi ipsum faucibus vitae aliquet. Sem viverra aliquet eget sit amet.',
-    image: '/images/news/news3.jpg',
-  },
-  {
-    id: 4,
-    date: '20 JULY, 2023',
-    title: 'Lorem Donec Massa',
-    description: 'Fames ac turpis egestas integer. Suscipit tellus mauris a diam maecenas sed.',
-    image: '/images/news/news4.jpg',
-  },
-];
+import { useEffect, useState } from 'react';
 
 export default function LatestNewsSection() {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch('/api/news');
+        const data = await res.json();
+        setItems(data.items || []);
+      } catch (e) {
+        setItems([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
   return (
     <section className="latest-news-section">
       <h2 className="section-title">Latest News</h2>
 
       <div className="news-grid">
-        {newsItems.map((item) => (
+        {(loading ? Array.from({ length: 4 }).map((_, i) => ({ id: i })) : items).map((item) => (
           <div key={item.id} className="news-card">
             <div className="news-image">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                style={{ objectFit: 'cover' }}
-              />
+              {loading ? (
+                <div className="skeleton" />
+              ) : (
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              )}
             </div>
-            <div className="news-content">
-              <p className="news-date">{item.date}</p>
-              <h3 className="news-title">{item.title}</h3>
-              <p className="news-description">{item.description}</p>
-              <a href="#" className="read-more">
-                Continue Reading
-              </a>
-            </div>
+            {loading ? (
+              <div className="news-content">
+                <div className="line small" />
+                <div className="line" />
+                <div className="line" />
+              </div>
+            ) : (
+              <div className="news-content">
+                <p className="news-date">{item.date}</p>
+                <h3 className="news-title">{item.title}</h3>
+                <p className="news-description">{item.description}</p>
+                <a href={item.url || '#'} target="_blank" rel="noopener noreferrer" className="read-more">
+                  Continue Reading
+                </a>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -95,6 +95,25 @@ export default function LatestNewsSection() {
           border-radius: 6px;
           overflow: hidden;
           margin-bottom: 20px;
+        }
+        .skeleton {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, #eee, #f5f5f5, #eee);
+          background-size: 200% 100%;
+          animation: shimmer 1.2s infinite;
+        }
+        .line {
+          height: 14px;
+          background: #f0f0f0;
+          margin: 8px 0;
+        }
+        .line.small {
+          width: 40%;
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
         }
 
         .news-date {

@@ -1,13 +1,19 @@
-import ProductDetailsPage from '../../../components/Shop/Product-Details';
+import ProductDetailsPage from '@/components/Shop/Product-Details';
+import { allProducts, createSlug, getProductBySlug } from '@/lib/products-data';
 
-// Force dynamic rendering - don't try to prerender during build
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
-// This is a Server Component - can use async/await
-export default async function Page({ params }) {
-    // In Next.js 15, params is a Promise that needs to be awaited
-    const resolvedParams = await params;
-    const slug = resolvedParams.slug;
+export function generateStaticParams() {
+  return allProducts.map(p => ({ slug: createSlug(p.name) }));
+}
 
-    return <ProductDetailsPage slug={slug} />;
+export default function Page({ params }) {
+    const slug = params.slug;
+    const product = getProductBySlug(slug);
+    
+    if (!product) {
+        return <div>Product not found</div>;
+    }
+    
+    return <ProductDetailsPage slug={slug} product={product} />;
 }

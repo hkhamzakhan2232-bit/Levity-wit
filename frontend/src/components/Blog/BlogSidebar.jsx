@@ -2,12 +2,47 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaFacebookF, FaInstagram, FaSearch, FaTwitter } from 'react-icons/fa'
 
 export default function BlogSidebar({ categories, recent, tags, currentCategory }) {
   const router = useRouter()
   const [q, setQ] = useState('')
+  const [user, setUser] = useState(null)
+  const [insta, setInsta] = useState([])
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+        if (!token) return
+        const base = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000'
+        const res = await fetch(`${base}/api/profile`, {
+          headers: { Authorization: `Bearer ${token}` },
+          credentials: 'include',
+        })
+        if (!res.ok) return
+        const data = await res.json()
+        setUser(data.user)
+      } catch (e) {
+        // ignore
+      }
+    }
+    fetchUser()
+  }, [])
+  
+  useEffect(() => {
+    async function fetchInsta() {
+      try {
+        const res = await fetch('/api/instagram')
+        const data = await res.json()
+        setInsta(data.items || [])
+      } catch (e) {
+        setInsta([])
+      }
+    }
+    fetchInsta()
+  }, [])
 
   function onSearch(e) {
     e.preventDefault()
@@ -55,6 +90,12 @@ export default function BlogSidebar({ categories, recent, tags, currentCategory 
             <a href="#" aria-label="Twitter"><FaTwitter /></a>
             <a href="#" aria-label="Instagram"><FaInstagram /></a>
           </div>
+          {user && (
+            <div className="user-box">
+              <div className="user-line"><strong>User:</strong> {user.username}</div>
+              <div className="user-line"><strong>Email:</strong> {user.email}</div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -126,15 +167,8 @@ export default function BlogSidebar({ categories, recent, tags, currentCategory 
         </div>
       </div>
 
-      {/* Instagram Section Placeholder */}
-      <div className="sidebar-section instagram">
-        <h3 className="sidebar-title">Instagram</h3>
-        <div className="instagram-grid">
-          {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-            <div key={i} className="instagram-item" />
-          ))}
-        </div>
-      </div>
+      {/* Instagram Section */}
+      <InstagramGrid />
 
       <style jsx>{`
         .sidebar {
@@ -250,6 +284,18 @@ export default function BlogSidebar({ categories, recent, tags, currentCategory 
 
         .author-social a:hover {
           color: #666;
+        }
+        .user-box {
+          margin-top: 12px;
+          text-align: left;
+          background: #fff;
+          padding: 10px 12px;
+          border: 1px solid #eee;
+        }
+        .user-line {
+          font-size: 12px;
+          color: #555;
+          margin: 4px 0;
         }
 
         /* Categories */
@@ -389,21 +435,25 @@ export default function BlogSidebar({ categories, recent, tags, currentCategory 
         }
 
         /* Instagram Grid */
+        .instagram-section {
+          margin-bottom: 40px;
+        }
         .instagram-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 5px;
         }
-
-        .instagram-item {
+        .insta-item {
+          position: relative;
           aspect-ratio: 1;
+          overflow: hidden;
           background: #f0f0f0;
-          transition: opacity 0.3s ease;
-          cursor: pointer;
         }
-
-        .instagram-item:hover {
-          opacity: 0.8;
+        .insta-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
 
         /* Responsive Design */
@@ -452,5 +502,33 @@ export default function BlogSidebar({ categories, recent, tags, currentCategory 
         }
       `}</style>
     </aside>
+  )
+}
+
+function InstagramGrid() {
+  const [items, setItems] = useState([])
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch('/api/instagram')
+        const data = await res.json()
+        setItems(data.items || [])
+      } catch {
+        setItems([])
+      }
+    }
+    load()
+  }, [])
+  return (
+    <div className="sidebar-section instagram-section">
+      <h3 className="sidebar-title">Instagram</h3>
+      <div className="instagram-grid">
+        {items.map(item => (
+          <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="insta-item">
+            <img src={item.image} alt="Instagram item" />
+          </a>
+        ))}
+      </div>
+    </div>
   )
 }

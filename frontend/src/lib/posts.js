@@ -2,8 +2,9 @@
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
+import 'server-only'
 
-const postsDirectory = path.join(process.cwd(), 'posts') // Adjust this path to your posts folder
+const postsDirectory = path.join(process.cwd(), 'posts')
 
 export function getAllPosts() {
     // Get all files from the posts directory
@@ -48,21 +49,25 @@ export function getAllPosts() {
 }
 
 export function getPostBySlug(slug) {
-    const fullPath = path.join(postsDirectory, `${slug}.md`)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data, content } = matter(fileContents)
-
-    return {
-        slug,
-        title: data.title,
-        date: data.date,
-        category: data.category,
-        tags: data.tags || [],
-        cover: data.cover,
-        excerpt: data.excerpt,
-        author: data.author,
-        author_avatar: data.author_avatar,
-        content
+    try {
+        const safe = slug.toLowerCase().replace(/[^a-z0-9-]/g, '')
+        const fullPath = path.join(postsDirectory, `${safe}.md`)
+        const fileContents = fs.readFileSync(fullPath, 'utf8')
+        const { data, content } = matter(fileContents)
+        return {
+            slug: safe,
+            title: data.title,
+            date: data.date,
+            category: data.category,
+            tags: data.tags || [],
+            cover: data.cover,
+            excerpt: data.excerpt,
+            author: data.author,
+            author_avatar: data.author_avatar,
+            content
+        }
+    } catch {
+        return null
     }
 }
 

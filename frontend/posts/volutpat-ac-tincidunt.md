@@ -5,7 +5,7 @@ category: "Clothing"
 tags: ["store","online","clothing","color","trend","curly"]
 cover: "/images/news/news1.jpg"
 excerpt: "Leo duis ut diam quam nulla porttitor massa id. Urna molestie at elementum eu facilisis sed odio morbi. Aliquam etiam erat velit scelerisque. Mattis pellentesque id nibh tortor id aliquet lectus proin."
-author: "Cristofer Vetrows"
+author: "Cristofer Vetrows" 
 author_avatar: "/images/meet-beth/beth-portrait.jpg"
 ---
 
