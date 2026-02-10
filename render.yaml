@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: levity-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: JWT_SECRET
+        value: CHANGE_ME
+      - key: FRONTEND_URL
+        value: https://frontend-green-five-92.vercel.app
+      - key: MONGODB_URI
+        value: CHANGE_ME
