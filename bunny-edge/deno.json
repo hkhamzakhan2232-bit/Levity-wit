@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["deno.ns", "deno.unstable", "dom"]
+  },
+  "imports": {
+    "@bunny/edgescript": "https://esm.sh/@bunny.net/edgescript-sdk@latest"
+  }
+}
